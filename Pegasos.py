@@ -254,8 +254,8 @@ def adaGrad(mat,reg,iters,batchSize,Y,test,Ytest):
         numTestErrsPeg[i] = np.where(test.dot(w_peg.T) * Ytest < 0)[0].shape[0] / float(ntest)
 
 
-        if i % 100 == 0:
-            print  'L2 Norm between Pegasos and Adagrad Weights', l2norm2(w - w_peg)
+        if i % 10000 == 0:
+           # print  'L2 Norm between Pegasos and Adagrad Weights', l2norm2(w - w_peg)
             print 'Iteration: ', i, " Train Error: ", numTrainErrs[i], " Test Error: ", numTestErrs[i]
             print 'Iteration: ', i, " Peg Train Error: ", numTrainErrsPeg[i], " Peg Test Error: ", numTestErrsPeg[i]
 
@@ -322,8 +322,8 @@ def runGrad():
     train = preprocessing.scale(train,with_mean=False, copy=False)
     test = preprocessing.scale(test,with_mean=False, copy=False)
 
-    iters = 2500
-    batchSize = 4500
+    iters = 7500000
+    batchSize = 30
     reg = .01
     AdaTrainErrs, AdaTestErrs, PegaTrainErrs, PegaTestErrs  = adaGrad(train,reg, iters, batchSize, Ytrain,test,Ytest)
 
